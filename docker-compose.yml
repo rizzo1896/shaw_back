@@ -1,0 +1,10 @@
+version: '3.9'
+services:
+  api:
+    container_name: backend
+    restart: on-failure
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 5000:5000
