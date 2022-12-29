@@ -3,7 +3,7 @@ import { IRepo, IUser } from "../types/User.type";
 
 interface IGetUserListParams {
   since: number;
-  pagination: number;
+  per_page: number;
 }
 
 class GithubService {
@@ -11,11 +11,11 @@ class GithubService {
 
   public async getUserList({
     since,
-    pagination,
+    per_page,
   }: IGetUserListParams): Promise<IUser[]> {
     try {
       const response = await axios.get(
-        `${this.baseUrl}?since=${since}&per_page=${pagination}`
+        `${this.baseUrl}?since=${since}&per_page=${per_page}`
       );
       return response.data;
     } catch (error) {

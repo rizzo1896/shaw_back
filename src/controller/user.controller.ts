@@ -11,11 +11,11 @@ class UserController {
 
   public routes() {
     this.router.get("/", async (req, res) => {
-      const { since, pagination } = req.query;
+      const { since, per_page } = req.query;
       try {
         const response = await githubServices.getUserList({
           since: Number(since),
-          pagination: Number(pagination || 10),
+          per_page: Number(per_page),
         });
 
         if (response.length === 0) {
