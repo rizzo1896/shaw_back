@@ -15,7 +15,12 @@ class GithubService {
   }: IGetUserListParams): Promise<IUser[]> {
     try {
       const response = await axios.get(
-        `${this.baseUrl}?since=${since}&per_page=${per_page}`
+        `${this.baseUrl}?since=${since}&per_page=${per_page}`,
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.AUTH_KEY}`,
+          },
+        }
       );
       return response.data;
     } catch (error) {
@@ -25,7 +30,11 @@ class GithubService {
 
   public async getUserDetails(username: string): Promise<IUser> {
     try {
-      const response = await axios.get(`${this.baseUrl}/${username}`);
+      const response = await axios.get(`${this.baseUrl}/${username}`, {
+        headers: {
+          Authorization: `Bearer ${process.env.AUTH_KEY}`,
+        },
+      });
       return response.data;
     } catch (error) {
       throw error;
@@ -34,7 +43,11 @@ class GithubService {
 
   public async getUserRepos(username: string): Promise<IRepo> {
     try {
-      const response = await axios.get(`${this.baseUrl}/${username}/repos`);
+      const response = await axios.get(`${this.baseUrl}/${username}/repos`, {
+        headers: {
+          Authorization: `Bearer ${process.env.AUTH_KEY}`,
+        },
+      });
       return response.data;
     } catch (error) {
       throw error;
